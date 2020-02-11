@@ -3,7 +3,7 @@ title       : Melbourne House Prices Map Application
 subtitle    : A Shiny based application for Finding Houses in Melbourne
 author      : Paolo Coraggio
 job         : 
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+framework   : revealjs      # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
 widgets     : []            # {mathjax, quiz, bootstrap}
@@ -12,12 +12,17 @@ knit        : slidify::knit2slides
 logo        : MelbourneLogo.png
 ---
 
-## The MHPMap App
+## Melbourne House Prices Map App
 
-1. Interactive House Search Application 
-2. Select your criteria (number of rooms, bathrooms, house type and Melbourne Region)
-3. View matches on the map and compare prices with same criteria in whole Melbourne
-4. Inizio a bestemmiare
+An Interactive Shiny Application to help you to find home in Melbourne, Australia
+
+--- .class #id 
+## The Melbourne House Prices Application
+
+> 1. Interactive House Search Application 
+> 2. Select your criteria (number of rooms, bathrooms, house type and Melbourne Region)
+> 3. View matches on the map and compare prices with same criteria in whole Melbourne
+> 4. Inizio a bestemmiare
 
 --- .class #id 
 
@@ -36,25 +41,86 @@ logo        : MelbourneLogo.png
 
 --- .class #id 
 
-## Motion chart
+## The Map 
 
-```{r echo=FALSE, results='asis', message=FALSE}
+```{r echo=FALSE, fig.align='left', message=FALSE, warning=FALSE, results='asis'}
+
 library(plotly)
 load("dfmel.Rdata")
 
+l <- list(
+    x = 0.1, 
+    y = 0.9,
+  font = list(
+    #family = "sans-serif",
+    size = 12,
+    color = "#000"),
+  
+  bgcolor = "#E2E2E2",
+  bordercolor = "#FFFFFF",
+  orientation = 'v',
+  borderwidth = 1)
+
+
 p <- plot_ly(df.mel, type = "scattermapbox") %>%
-   layout(
-       mapbox = list(
-           style = 'open-street-map',
-           zoom =9.5,
-           center = list(lon = mean(df.mel$Longtitude), 
-                         lat = mean(df.mel$Lattitude)))
-   )
+    add_trace(lat = filter(df.mel, PriceCategory == "low")$Lattitude,
+              lon = filter(df.mel, PriceCategory == "low")$Longtitude,
+              # color = paste("<b>Low Price</b>","<br> < 660k"),
+              color = "Low Price",
+              marker = list(color = "darkgreen"),
+              hoverinfo = "text",
+              hovertext = filter(df.mel, PriceCategory == "low")$HoverText,
+              mode = "markers") %>%
+    add_trace(lat = filter(df.mel, PriceCategory == "medium low")$Lattitude,
+              lon = filter(df.mel, PriceCategory == "medium low")$Longtitude,
+              #color = paste("<b>Medium Low Price</b>", "<br> 660k - 910k"),
+              color = "Low Price",
+              marker = list(color = "green"),
+              hoverinfo = "text",
+              hovertext = filter(df.mel, PriceCategory == "medium low")$HoverText,
+              mode = "markers") %>%
+    add_trace(lat = filter(df.mel, PriceCategory == "medium high")$Lattitude,
+              lon = filter(df.mel, PriceCategory == "medium high")$Longtitude,
+              #color = paste("<b>Medium High Price</b>","<br> 910K - 1.33M"),
+              color = "Low Price",
+              marker = list(color = "orange"),
+              hovertext = filter(df.mel, PriceCategory == "medium high")$HoverText,
+              hoverinfo = "text",
+              mode = "markers")%>%
+    add_trace(lat = filter(df.mel, PriceCategory == "high")$Lattitude,
+              lon = filter(df.mel, PriceCategory == "high")$Longtitude,
+              #color = paste("<b>High Price</b>","<br> > 1.33M"),
+              color = "Low Price",
+              marker = list(color = "red"),
+              hovertext = filter(df.mel, PriceCategory == "high")$HoverText,
+              hoverinfo = "text",
+              mode = "markers")%>%
+    layout(
+        #showlegend = FALSE,
+        legend = l,
+        mapbox = list(
+            style = 'open-street-map',
+            zoom =9.5,
+            center = list(lon = mean(df.mel$Longtitude), 
+                          lat = mean(df.mel$Lattitude)))
+    )
 
 htmlwidgets::saveWidget(as_widget(p), file = "demoemap.html")
 ```
 
-<iframe src="demoemap.html" style="position:absolute;height:100%;width:100%"></iframe>
+<!-- <iframe src="demoemap.html" style="position:absolute;height:90%;width:90%"></iframe> -->
+
+
+<style>
+  .p_iframe iframe {
+    width:90%;
+    height:576px;
+}
+</style>
+
+<div class="p_iframe">
+<iframe frameborder="0" seamless='seamless' scrolling=no src="demoemap.html"></iframe>
+</div>
 
 --- .class #id
 

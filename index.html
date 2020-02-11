@@ -1,188 +1,113 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Melbourne House Prices Map Application</title>
   <meta charset="utf-8">
-  <meta name="description" content="Melbourne House Prices Map Application">
+  <title>Melbourne House Prices Map Application</title>
+  <meta name="description" content="">
   <meta name="author" content="Paolo Coraggio">
-  <meta name="generator" content="slidify" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
-  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
-    media="only screen and (max-device-width: 480px)" >
-  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
-  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
-  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
-
-  
-  <!-- Grab CDN jQuery, fall back to local if offline -->
-  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
-  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
-  <script data-main="libraries/frameworks/io2012/js/slides" 
-    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
-  </script>
-  
-  
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/reveal.min.css">
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/theme/default.css" id="theme">
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" id="theme">
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->  <link rel="stylesheet" href = "assets/css/ribbons.css">
 
 </head>
-<body style="opacity: 0">
-  <slides class="layout-widescreen">
-    
-    <!-- LOGO SLIDE -->
-        <slide class="title-slide segue nobackground">
-  
-  <aside class="gdbar">
-    <img src="assets/img/MelbourneLogo.png">
-  </aside>
-  
-  <hgroup class="auto-fadein">
-    <h1>Melbourne House Prices Map Application</h1>
-    <h2>A Shiny based application for Finding Houses in Melbourne</h2>
-    <p>Paolo Coraggio<br/></p>
-  </hgroup>
-  
-  <article></article>  
-  
-</slide>
-    
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class='' data-state='' id='slide-1'>
+  <h2>Melbourne House Prices Map App</h2>
+  <p>An Interactive Shiny Application to help you to find home in Melbourne, Australia</p>
 
-    <!-- SLIDES -->
-    <slide class="" id="slide-1" style="background:;">
   
-  <hgroup>
-    <h2>The MHPMap App</h2>
-  </hgroup>
-  
-  <article data-timings="">
-    <ol>
+</section>
+<section class='class' data-state='' id='id'>
+  <h2>The Melbourne House Prices Application</h2>
+  <ol class = "build incremental">
 <li>Interactive House Search Application </li>
 <li>Select your criteria (number of rooms, bathrooms, house type and Melbourne Region)</li>
 <li>View matches on the map and compare prices with same criteria in whole Melbourne</li>
 <li>Inizio a bestemmiare</li>
 </ol>
 
-  </article>
-  <!-- Presenter Notes -->
   
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  
-  <hgroup>
-    <h2>What are the criteria</h2>
-  </hgroup>
-  
-  <article data-timings="">
-    <blockquote>
+</section>
+<section class='class' data-state='' id='id'>
+  <h2>What are the criteria</h2>
+  <blockquote>
 <p>A. My criteria are always the same
 B. E se smettessi di ascoltare questa musica cosi&#39; coinvolgente e triste forse scriverei meglio.
 C. Inizierei, come per incanto, a incasellare perfettamente le parole in onde sincopate che fanno da sottofondo perfetto
 D. Per immaginifici significati. L&#39;essenza dell&#39;uomo al di la dell&#39;esistenza. Nell&#39;ora e nel futuro. La descrizione banale della noia resa esaltante dal potere delle parole. L&#39;astuzia infinita, l&#39;estro, il genio che ci converte in creatori di spazi, di storie, mondi e universi nei quali rifugiarsi dal nostro piattume esistenziale. </p>
 </blockquote>
 
-  </article>
-  <!-- Presenter Notes -->
   
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  
-  <hgroup>
-    <h2>Problemi con googleVis</h2>
-  </hgroup>
-  
-  <article data-timings="">
-    <ol>
+</section>
+<section class='class' data-state='' id='id'>
+  <h2>Problemi con googleVis</h2>
+  <ol>
 <li>AAAAAAAAAAAAAAAAAARHHHHHHHHHHHHH</li>
 </ol>
 
-  </article>
-  <!-- Presenter Notes -->
   
-</slide>
+</section>
+<section class='class' data-state='' id='id'>
+  <h2>The Map</h2>
+  <!-- <iframe src="demoemap.html" style="position:absolute;height:90%;width:90%"></iframe> -->
 
-<slide class="class" id="id" style="background:;">
-  
-  <hgroup>
-    <h2>Motion chart</h2>
-  </hgroup>
-  
-  <article data-timings="">
-    <iframe src="demoemap.html" style="position:absolute;height:100%;width:100%"></iframe>
+<style>
+  .p_iframe iframe {
+    width:90%;
+    height:576px;
+}
+</style>
 
-  </article>
-  <!-- Presenter Notes -->
-  
-</slide>
+<div class="p_iframe">
+<iframe frameborder="0" seamless='seamless' scrolling=no src="demoemap.html"></iframe>
+</div>
 
-<slide class="class" id="id" style="background:;">
   
-  <hgroup>
-    <h2>Domanda</h2>
-  </hgroup>
-  
-  <article data-timings="">
-    <p>Ma sto aggiornando o no?</p>
+</section>
+<section class='class' data-state='' id='id'>
+  <h2>Domanda</h2>
+  <p>Ma sto aggiornando o no?</p>
 
-  </article>
-  <!-- Presenter Notes -->
   
-</slide>
-
-    <slide class="backdrop"></slide>
-  </slides>
-  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
-    <ul>
-      
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='The MHPMap App'>
-         1
-      </a>
-    </li>
-    
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='What are the criteria'>
-         2
-      </a>
-    </li>
-    
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Problemi con googleVis'>
-         3
-      </a>
-    </li>
-    
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Motion chart'>
-         4
-      </a>
-    </li>
-    
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Domanda'>
-         5
-      </a>
-    </li>
-    
-    </ul>
-  </div>  <!--[if IE]>
-    <script 
-      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
-    </script>
-    <script>CFInstall.check({mode: 'overlay'});</script>
-  <![endif]-->
+</section>
+    </div>
+  </div>
 </body>
-  <!-- Load Javascripts for Widgets -->
-  
-  <!-- LOAD HIGHLIGHTER JS FILES -->
-  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
-   
-  </html>
+  <script src="libraries/frameworks/revealjs/lib/js/head.min.js"></script>
+  <script src="libraries/frameworks/revealjs/js/reveal.min.js"></script>
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme || 'default', 
+    transition: Reveal.getQueryHash().transition || 'default', 
+    dependencies: [
+    // Cross-browser shim that fully implements classList -
+    // https://github.com/eligrey/classList.js/
+      { src: 'libraries/frameworks/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList;}},
+      // Zoom in and out with Alt+click
+      { src: 'libraries/frameworks/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: 'libraries/frameworks/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: 'libraries/frameworks/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+  });
+  </script>  <!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>

@@ -3,7 +3,7 @@ title       : Melbourne House Prices Map Application
 subtitle    : A Shiny based application for Finding Houses in Melbourne
 author      : Paolo Coraggio
 job         : 
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+framework   : revealjs      # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
 widgets     : []            # {mathjax, quiz, bootstrap}
@@ -12,12 +12,17 @@ knit        : slidify::knit2slides
 logo        : MelbourneLogo.png
 ---
 
-## The MHPMap App
+## Melbourne House Prices Map App
 
-1. Interactive House Search Application 
-2. Select your criteria (number of rooms, bathrooms, house type and Melbourne Region)
-3. View matches on the map and compare prices with same criteria in whole Melbourne
-4. Inizio a bestemmiare
+An Interactive Shiny Application to help you to find home in Melbourne, Australia
+
+--- .class #id 
+## The Melbourne House Prices Application
+
+> 1. Interactive House Search Application 
+> 2. Select your criteria (number of rooms, bathrooms, house type and Melbourne Region)
+> 3. View matches on the map and compare prices with same criteria in whole Melbourne
+> 4. Inizio a bestemmiare
 
 --- .class #id 
 
@@ -36,11 +41,23 @@ logo        : MelbourneLogo.png
 
 --- .class #id 
 
-## Motion chart
+## The Map 
 
 
 
-<iframe src="demoemap.html" style="position:absolute;height:100%;width:100%"></iframe>
+<!-- <iframe src="demoemap.html" style="position:absolute;height:90%;width:90%"></iframe> -->
+
+
+<style>
+  .p_iframe iframe {
+    width:90%;
+    height:576px;
+}
+</style>
+
+<div class="p_iframe">
+<iframe frameborder="0" seamless='seamless' scrolling=no src="demoemap.html"></iframe>
+</div>
 
 --- .class #id
 
