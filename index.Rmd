@@ -29,6 +29,12 @@ logo        : MelbourneLogo.png
 
 --- .class #id 
 
+## Problemi con googleVis
+
+1. AAAAAAAAAAAAAAAAAARHHHHHHHHHHHHH
+
+--- .class #id 
+
 ## Motion chart
 
 ```{r echo=FALSE, results='asis', message=FALSE}
