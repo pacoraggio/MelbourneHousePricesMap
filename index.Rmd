@@ -17,6 +17,7 @@ logo        : MelbourneLogo.png
 1. Interactive House Search Application 
 2. Select your criteria (number of rooms, bathrooms, house type and Melbourne Region)
 3. View matches on the map and compare prices with same criteria in whole Melbourne
+4. Inizio a bestemmiare
 
 --- .class #id 
 
@@ -38,9 +39,21 @@ logo        : MelbourneLogo.png
 ## Motion chart
 
 ```{r echo=FALSE, results='asis', message=FALSE}
-require(googleVis)
-M1 <- gvisMotionChart(Fruits, idvar = "Fruit", timevar = "Year")
-print(M1, tag = 'chart')
+library(plotly)
+load("dfmel.Rdata")
+
+print(names(df.mel))
+print(median(df.mel$Lattitude)) 
+print(median(df.mel$Longtitude))
+
+plot_ly(df.mel, type = "scattermapbox") %>%
+   layout(
+       mapbox = list(
+           style = 'open-street-map',
+           zoom =9.5,
+           center = list(lon = mean(df.mel$Longtitude), 
+                         lat = mean(df.mel$Lattitude)))
+   )
 ```
 
 --- .class #id

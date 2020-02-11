@@ -59,6 +59,7 @@
 <li>Interactive House Search Application </li>
 <li>Select your criteria (number of rooms, bathrooms, house type and Melbourne Region)</li>
 <li>View matches on the map and compare prices with same criteria in whole Melbourne</li>
+<li>Inizio a bestemmiare</li>
 </ol>
 
   </article>
@@ -108,181 +109,26 @@ D. Per immaginifici significati. L&#39;essenza dell&#39;uomo al di la dell&#39;e
   </hgroup>
   
   <article data-timings="">
-    <!-- MotionChart generated in R 3.6.2 by googleVis 0.6.4 package -->
+    <p>[1] &quot;Suburb&quot;        &quot;Address&quot;       &quot;Rooms&quot;         &quot;Type&quot;<br>
+ [5] &quot;Price&quot;         &quot;Method&quot;        &quot;SellerG&quot;       &quot;Date&quot;<br>
+ [9] &quot;Distance&quot;      &quot;Postcode&quot;      &quot;Bedroom2&quot;      &quot;Bathroom&quot;<br>
+[13] &quot;Car&quot;           &quot;Landsize&quot;      &quot;BuildingArea&quot;  &quot;YearBuilt&quot;<br>
+[17] &quot;CouncilArea&quot;   &quot;Lattitude&quot;     &quot;Longtitude&quot;    &quot;Regionname&quot;<br>
+[21] &quot;Propertycount&quot; &quot;PriceCategory&quot; &quot;MarkerColor&quot;   &quot;HoverText&quot;<br>
+[1] -37.7998
+[1] 145.0035</p>
 
-<!-- Tue Feb 11 16:04:18 2020 -->
+<pre><code>## Warning in normalizePath(path.expand(path), winslash, mustWork):
+## path[1]=&quot;webshotc807b5a6040.png&quot;: The system cannot find the file specified
+</code></pre>
 
-<!-- jsHeader -->
+<pre><code>## Warning in file(con, &quot;rb&quot;): cannot open file &#39;C:
+## \Users\pacor\AppData\Local\Temp\RtmpIpRIEI\filec80c6230fe\webshotc807b5a6040.png&#39;:
+## No such file or directory
+</code></pre>
 
-<script type="text/javascript">
- 
-// jsData 
-function gvisDataMotionChartID6bc6f271974 () {
-var data = new google.visualization.DataTable();
-var datajson =
-[
- [
-"Apples",
-2008,
-"West",
-98,
-78,
-20,
-"2008-12-31"
-],
-[
-"Apples",
-2009,
-"West",
-111,
-79,
-32,
-"2009-12-31"
-],
-[
-"Apples",
-2010,
-"West",
-89,
-76,
-13,
-"2010-12-31"
-],
-[
-"Oranges",
-2008,
-"East",
-96,
-81,
-15,
-"2008-12-31"
-],
-[
-"Bananas",
-2008,
-"East",
-85,
-76,
-9,
-"2008-12-31"
-],
-[
-"Oranges",
-2009,
-"East",
-93,
-80,
-13,
-"2009-12-31"
-],
-[
-"Bananas",
-2009,
-"East",
-94,
-78,
-16,
-"2009-12-31"
-],
-[
-"Oranges",
-2010,
-"East",
-98,
-91,
-7,
-"2010-12-31"
-],
-[
-"Bananas",
-2010,
-"East",
-81,
-71,
-10,
-"2010-12-31"
-] 
-];
-data.addColumn('string','Fruit');
-data.addColumn('number','Year');
-data.addColumn('string','Location');
-data.addColumn('number','Sales');
-data.addColumn('number','Expenses');
-data.addColumn('number','Profit');
-data.addColumn('string','Date');
-data.addRows(datajson);
-return(data);
-}
- 
-// jsDrawChart
-function drawChartMotionChartID6bc6f271974() {
-var data = gvisDataMotionChartID6bc6f271974();
-var options = {};
-options["width"] = 600;
-options["height"] = 500;
-options["state"] = "";
-
-    var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartID6bc6f271974')
-    );
-    chart.draw(data,options);
-    
-
-}
-  
- 
-// jsDisplayChart
-(function() {
-var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-var chartid = "motionchart";
-  
-// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
-var i, newPackage = true;
-for (i = 0; newPackage && i < pkgs.length; i++) {
-if (pkgs[i] === chartid)
-newPackage = false;
-}
-if (newPackage)
-  pkgs.push(chartid);
-  
-// Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartID6bc6f271974);
-})();
-function displayChartMotionChartID6bc6f271974() {
-  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-  window.clearTimeout(window.__gvisLoad);
-  // The timeout is set to 100 because otherwise the container div we are
-  // targeting might not be part of the document yet
-  window.__gvisLoad = setTimeout(function() {
-  var pkgCount = pkgs.length;
-  google.load("visualization", "1", { packages:pkgs, callback: function() {
-  if (pkgCount != pkgs.length) {
-  // Race condition where another setTimeout call snuck in after us; if
-  // that call added a package, we must not shift its callback
-  return;
-}
-while (callbacks.length > 0)
-callbacks.shift()();
-} });
-}, 100);
-}
- 
-// jsFooter
-</script>
- 
-
-<!-- jsChart -->  
-
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID6bc6f271974"></script>
- 
-
-<!-- divChart -->
-
-<div id="MotionChartID6bc6f271974" 
-  style="width: 600; height: 500;">
-</div>
+<pre><code>## Error in file(con, &quot;rb&quot;): cannot open the connection
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
