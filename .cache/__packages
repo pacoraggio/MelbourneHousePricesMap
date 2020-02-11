@@ -2,3 +2,5 @@ base
 googleVis
 ggplot2
 plotly
+dplyr
+slidify
