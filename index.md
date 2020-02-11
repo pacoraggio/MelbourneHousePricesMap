@@ -22,6 +22,11 @@ logo        : MelbourneLogo.png
 
 ## What are the criteria
 
+> A. My criteria are always the same
+> B. E se smettessi di ascoltare questa musica cosi' coinvolgente e triste forse scriverei meglio.
+> C. Inizierei, come per incanto, a incasellare perfettamente le parole in onde sincopate che fanno da sottofondo perfetto
+> D. Per immaginifici significati. L'essenza dell'uomo al di la dell'esistenza. Nell'ora e nel futuro. La descrizione banale della noia resa esaltante dal potere delle parole. L'astuzia infinita, l'estro, il genio che ci converte in creatori di spazi, di storie, mondi e universi nei quali rifugiarsi dal nostro piattume esistenziale. 
+
 
 
 
