@@ -27,7 +27,19 @@ logo        : MelbourneLogo.png
 > C. Inizierei, come per incanto, a incasellare perfettamente le parole in onde sincopate che fanno da sottofondo perfetto
 > D. Per immaginifici significati. L'essenza dell'uomo al di la dell'esistenza. Nell'ora e nel futuro. La descrizione banale della noia resa esaltante dal potere delle parole. L'astuzia infinita, l'estro, il genio che ci converte in creatori di spazi, di storie, mondi e universi nei quali rifugiarsi dal nostro piattume esistenziale. 
 
+--- .class #id 
 
+## Motion chart
 
+```{r echo=FALSE, results='asis', message=FALSE}
+require(googleVis)
+M1 <- gvisMotionChart(Fruits, idvar = "Fruit", timevar = "Year")
+print(M1, tag = 'chart')
+```
 
+--- .class #id
+
+## Domanda
+
+Ma sto aggiornando o no?
 
