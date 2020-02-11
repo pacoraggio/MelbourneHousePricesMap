@@ -38,29 +38,9 @@ logo        : MelbourneLogo.png
 
 ## Motion chart
 
- [1] "Suburb"        "Address"       "Rooms"         "Type"         
- [5] "Price"         "Method"        "SellerG"       "Date"         
- [9] "Distance"      "Postcode"      "Bedroom2"      "Bathroom"     
-[13] "Car"           "Landsize"      "BuildingArea"  "YearBuilt"    
-[17] "CouncilArea"   "Lattitude"     "Longtitude"    "Regionname"   
-[21] "Propertycount" "PriceCategory" "MarkerColor"   "HoverText"    
-[1] -37.7998
-[1] 145.0035
 
-```
-## Warning in normalizePath(path.expand(path), winslash, mustWork):
-## path[1]="webshotc807b5a6040.png": The system cannot find the file specified
-```
 
-```
-## Warning in file(con, "rb"): cannot open file 'C:
-## \Users\pacor\AppData\Local\Temp\RtmpIpRIEI\filec80c6230fe\webshotc807b5a6040.png':
-## No such file or directory
-```
-
-```
-## Error in file(con, "rb"): cannot open the connection
-```
+<iframe src="demoemap.html" style="position:absolute;height:100%;width:100%"></iframe>
 
 --- .class #id
 
