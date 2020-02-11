@@ -12,15 +12,16 @@ knit        : slidify::knit2slides
 logo        : MelbourneLogo.png
 ---
 
-## Read-And-Delete
+## The MHPMap App
 
-1. Edit YAML front matter
-2. Write using R Markdown
-3. Use an empty line followed by three dashes to separate slides!
+1. Interactive House Search Application 
+2. Select your criteria (number of rooms, bathrooms, house type and Melbourne Region)
+3. View matches on the map and compare prices with same criteria in whole Melbourne
 
 --- .class #id 
 
-## Slide 2
+## What are the criteria
+
 
 
 
