@@ -127,14 +127,13 @@ l <- list(
   bgcolor = "#E2E2E2",
   bordercolor = "#FFFFFF",
   orientation = 'v',
-  borderwidth = 0)
+  borderwidth = 10)
 
 
 p <- plot_ly(df.melPres, type = "scattermapbox") %>%
     add_trace(lat = filter(df.melPres, PriceCategory == "low")$Lattitude,
               lon = filter(df.melPres, PriceCategory == "low")$Longtitude,
               color = paste("<b>Low Price</b>","<br> < 660k"),
-              # color = "Low Price",
               marker = list(color = "darkgreen"),
               hoverinfo = "text",
               hovertext = filter(df.melPres, PriceCategory == "low")$HoverText,
@@ -142,7 +141,6 @@ p <- plot_ly(df.melPres, type = "scattermapbox") %>%
     add_trace(lat = filter(df.melPres, PriceCategory == "medium low")$Lattitude,
               lon = filter(df.melPres, PriceCategory == "medium low")$Longtitude,
               color = paste("<b>Medium Low Price</b>", "<br> 660k - 910k"),
-              # color = "Low Price",
               marker = list(color = "green"),
               hoverinfo = "text",
               hovertext = filter(df.melPres, PriceCategory == "medium low")$HoverText,
@@ -150,7 +148,6 @@ p <- plot_ly(df.melPres, type = "scattermapbox") %>%
     add_trace(lat = filter(df.melPres, PriceCategory == "medium high")$Lattitude,
               lon = filter(df.melPres, PriceCategory == "medium high")$Longtitude,
               color = paste("<b>Medium High Price</b>","<br> 910K - 1.33M"),
-              #color = "Low Price",
               marker = list(color = "orange"),
               hovertext = filter(df.melPres, PriceCategory == "medium high")$HoverText,
               hoverinfo = "text",
@@ -158,7 +155,6 @@ p <- plot_ly(df.melPres, type = "scattermapbox") %>%
     add_trace(lat = filter(df.melPres, PriceCategory == "high")$Lattitude,
               lon = filter(df.melPres, PriceCategory == "high")$Longtitude,
               color = paste("<b>High Price</b>","<br> > 1.33M"),
-              #color = "Low Price",
               marker = list(color = "red"),
               hovertext = filter(df.melPres, PriceCategory == "high")$HoverText,
               hoverinfo = "text",
@@ -173,14 +169,12 @@ p <- plot_ly(df.melPres, type = "scattermapbox") %>%
                           lat = mean(df.melPres$Lattitude)))
     )
 
-# htmlwidgets::saveWidget(as_widget(p), file = "demoemap.html")
 htmlwidgets::saveWidget(p, file = "demoemap1.html")
 cat('<pre><iframe src="demoemap1.html" width=100% height=350px allowtransparency="true"> </iframe></pre>')
 ```
 
 --- .class #id
 
-## Domanda
+## Summarize and Compare
 
-Ma sto aggiornando o no?
 
