@@ -6,121 +6,177 @@ job         :
 framework   : revealjs      # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
+revealjs    :
+  theme: night
+  transition: page
 widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 logo        : MelbourneLogo.png
 ---
 
+<style>
+.reveal h1 {
+    font-size: 2em;
+    // color: #0000b3;
+    padding-bottom: 10px;
+}
+
+.reveal h2 {
+    font-size: 1.5em;
+    //color: #fff7e6;
+    padding-bottom: 10px;
+}
+
+
+.reveal p, .reveal em {
+    padding-bottom: 10px;
+    width: 960px;
+}
+
+.reveal p {
+    font-size: .75em;
+}
+
+.reveal small {
+    width: 500px;
+}
+
+
+.reveal .slides {
+    text-align: left;
+}
+
+.reveal .roll {
+    vertical-align: text-bottom;
+}
+
+
+code {
+    color: red;
+}
+
+.reveal pre code { 
+     height: 80px;
+}
+</style>
+
 ## Melbourne House Prices Map App
 
 An Interactive Shiny Application to help you to find home in Melbourne, Australia
 
+<left>
+<small> author: Paolo Coraggio </small>
+</left>
+
+<small> date: 14.02.2020 </small>
+
 --- .class #id 
+
 ## The Melbourne House Prices Application
 
-> 1. Interactive House Search Application 
-> 2. Select your criteria (number of rooms, bathrooms, house type and Melbourne Region)
-> 3. View matches on the map and compare prices with same criteria in whole Melbourne
-> 4. Inizio a bestemmiare
+The __MHPMap application__ is an interactive application helping you to find a house in Melbourne, Australia 
+
+.fragment __Select__ your criteria (e.g. number of Rooms, Bathrooms, 
+City district, Price Range) from the Drop Down and Slider menu
+
+.fragment __Visualise__ whithin an interactive map where the matching houses are located 
+
+.fragment __Compare__ the mean prices of your criteria with the rest of the city
+
+.fragment MHPMap is a [shiny](https://shiny.rstudio.com/) based application. You can find its full code on [GitHub](https://github.com/pacoraggio/MelbourneHousePriceShinyApp) 
 
 --- .class #id 
 
-## What are the criteria
+## Parameter Selection
 
-> A. My criteria are always the same
-> B. E se smettessi di ascoltare questa musica cosi' coinvolgente e triste forse scriverei meglio.
-> C. Inizierei, come per incanto, a incasellare perfettamente le parole in onde sincopate che fanno da sottofondo perfetto
-> D. Per immaginifici significati. L'essenza dell'uomo al di la dell'esistenza. Nell'ora e nel futuro. La descrizione banale della noia resa esaltante dal potere delle parole. L'astuzia infinita, l'estro, il genio che ci converte in creatori di spazi, di storie, mondi e universi nei quali rifugiarsi dal nostro piattume esistenziale. 
-
---- .class #id 
-
-## Problemi con googleVis
-
-1. AAAAAAAAAAAAAAAAAARHHHHHHHHHHHHH
+- The house data are available on [Kaggle](https://www.kaggle.com/anthonypino/melbourne-housing-market#Melbourne_housing_FULL.csv) and consist of more than 30k records containing information about house location, number of rooms, price, distance from the Melbourne business center and so on.
+- From the User Interface you can select the following parameters:
+  - Number of Rooms
+  - Number of Bathrooms
+  - Type of Residency (house, unit/duplex/, town house)
+  - In which Melbourne region you want to search
+  - The price range
+- This parameters are used to filter the data.frame created from the .csv file and the resulting data are displayed on the Melbourne Map
 
 --- .class #id 
 
-## The Map 
+## Map Visualization 
 
-```{r echo=FALSE, fig.align='left', message=FALSE, warning=FALSE, results='asis'}
+This is a map visualization for `houses` type with `3` rooms, `2` bathrooms, in Melbourne `Southern Metropolitan` area  
+
+```{r echo=TRUE, fig.align='left', message=FALSE, warning=FALSE, results='asis'}
 
 library(plotly)
-load("dfmel.Rdata")
+load("dfmelPres.Rdata")
+
+m = list(
+  l = 5,
+  r = 5,
+  b = 5,
+  t = 5,
+  pad = 1
+)
+
 
 l <- list(
-    x = 0.1, 
-    y = 0.9,
   font = list(
-    #family = "sans-serif",
-    size = 12,
+    size = 8,
     color = "#000"),
   
   bgcolor = "#E2E2E2",
   bordercolor = "#FFFFFF",
   orientation = 'v',
-  borderwidth = 1)
+  borderwidth = 0)
 
 
-p <- plot_ly(df.mel, type = "scattermapbox") %>%
-    add_trace(lat = filter(df.mel, PriceCategory == "low")$Lattitude,
-              lon = filter(df.mel, PriceCategory == "low")$Longtitude,
-              # color = paste("<b>Low Price</b>","<br> < 660k"),
-              color = "Low Price",
+p <- plot_ly(df.melPres, type = "scattermapbox") %>%
+    add_trace(lat = filter(df.melPres, PriceCategory == "low")$Lattitude,
+              lon = filter(df.melPres, PriceCategory == "low")$Longtitude,
+              color = paste("<b>Low Price</b>","<br> < 660k"),
+              # color = "Low Price",
               marker = list(color = "darkgreen"),
               hoverinfo = "text",
-              hovertext = filter(df.mel, PriceCategory == "low")$HoverText,
+              hovertext = filter(df.melPres, PriceCategory == "low")$HoverText,
               mode = "markers") %>%
-    add_trace(lat = filter(df.mel, PriceCategory == "medium low")$Lattitude,
-              lon = filter(df.mel, PriceCategory == "medium low")$Longtitude,
-              #color = paste("<b>Medium Low Price</b>", "<br> 660k - 910k"),
-              color = "Low Price",
+    add_trace(lat = filter(df.melPres, PriceCategory == "medium low")$Lattitude,
+              lon = filter(df.melPres, PriceCategory == "medium low")$Longtitude,
+              color = paste("<b>Medium Low Price</b>", "<br> 660k - 910k"),
+              # color = "Low Price",
               marker = list(color = "green"),
               hoverinfo = "text",
-              hovertext = filter(df.mel, PriceCategory == "medium low")$HoverText,
+              hovertext = filter(df.melPres, PriceCategory == "medium low")$HoverText,
               mode = "markers") %>%
-    add_trace(lat = filter(df.mel, PriceCategory == "medium high")$Lattitude,
-              lon = filter(df.mel, PriceCategory == "medium high")$Longtitude,
-              #color = paste("<b>Medium High Price</b>","<br> 910K - 1.33M"),
-              color = "Low Price",
+    add_trace(lat = filter(df.melPres, PriceCategory == "medium high")$Lattitude,
+              lon = filter(df.melPres, PriceCategory == "medium high")$Longtitude,
+              color = paste("<b>Medium High Price</b>","<br> 910K - 1.33M"),
+              #color = "Low Price",
               marker = list(color = "orange"),
-              hovertext = filter(df.mel, PriceCategory == "medium high")$HoverText,
+              hovertext = filter(df.melPres, PriceCategory == "medium high")$HoverText,
               hoverinfo = "text",
               mode = "markers")%>%
-    add_trace(lat = filter(df.mel, PriceCategory == "high")$Lattitude,
-              lon = filter(df.mel, PriceCategory == "high")$Longtitude,
-              #color = paste("<b>High Price</b>","<br> > 1.33M"),
-              color = "Low Price",
+    add_trace(lat = filter(df.melPres, PriceCategory == "high")$Lattitude,
+              lon = filter(df.melPres, PriceCategory == "high")$Longtitude,
+              color = paste("<b>High Price</b>","<br> > 1.33M"),
+              #color = "Low Price",
               marker = list(color = "red"),
-              hovertext = filter(df.mel, PriceCategory == "high")$HoverText,
+              hovertext = filter(df.melPres, PriceCategory == "high")$HoverText,
               hoverinfo = "text",
               mode = "markers")%>%
     layout(
-        #showlegend = FALSE,
+      margin = m,
         legend = l,
         mapbox = list(
             style = 'open-street-map',
             zoom =9.5,
-            center = list(lon = mean(df.mel$Longtitude), 
-                          lat = mean(df.mel$Lattitude)))
+            center = list(lon = mean(df.melPres$Longtitude), 
+                          lat = mean(df.melPres$Lattitude)))
     )
 
-htmlwidgets::saveWidget(as_widget(p), file = "demoemap.html")
+# htmlwidgets::saveWidget(as_widget(p), file = "demoemap.html")
+htmlwidgets::saveWidget(p, file = "demoemap1.html")
+cat('<pre><iframe src="demoemap1.html" width=100% height=350px allowtransparency="true"> </iframe></pre>')
 ```
-
-<!-- <iframe src="demoemap.html" style="position:absolute;height:90%;width:90%"></iframe> -->
-
-
-<style>
-  .p_iframe iframe {
-    width:90%;
-    height:576px;
-}
-</style>
-
-<div class="p_iframe">
-<iframe frameborder="0" seamless='seamless' scrolling=no src="demoemap.html"></iframe>
-</div>
 
 --- .class #id
 

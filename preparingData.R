@@ -42,4 +42,15 @@ df.mel$HoverText <- with(df.mel, paste('<b>Price:</b>', Price,
                                        '<br>', "# Rooms: ", Rooms,  " # Bathrooms: ", Bathroom,
                                        '<br>', "Type", lapply(Type,residency.type)))
 
+ttype <- "h"
+rrooms <- "3"
+bbathrooms <- "2"
+region <- "Southern Metropolitan"
+
+df.melPres <- df.mel[which(df.mel$Regionname == region &
+                               df.mel$Rooms %in% rrooms &
+                               df.mel$Bathroom %in% bbathrooms &
+                               df.mel$Type %in% ttype),] 
+
 save(df.mel, file = 'dfmel.Rdata')
+save(df.melPres, file = 'dfmelPres.Rdata')

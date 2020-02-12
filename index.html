@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="stylesheet" href="libraries/frameworks/revealjs/css/reveal.min.css">
-  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/theme/default.css" id="theme">
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/theme/night.css" id="theme">
   <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" id="theme">
   <!--[if lt IE 9]>
   <script src="lib/js/html5shiv.js"></script>
@@ -19,55 +19,174 @@
   <div class="reveal">
     <div class="slides">
       <section class='' data-state='' id='slide-1'>
-  <h2>Melbourne House Prices Map App</h2>
-  <p>An Interactive Shiny Application to help you to find home in Melbourne, Australia</p>
+  
+  <style>
+.reveal h1 {
+    font-size: 2em;
+    // color: #0000b3;
+    padding-bottom: 10px;
+}
+
+.reveal h2 {
+    font-size: 1.5em;
+    //color: #fff7e6;
+    padding-bottom: 10px;
+}
+
+
+.reveal p, .reveal em {
+    padding-bottom: 10px;
+    width: 960px;
+}
+
+.reveal p {
+    font-size: .75em;
+}
+
+.reveal small {
+    width: 500px;
+}
+
+
+.reveal .slides {
+    text-align: left;
+}
+
+.reveal .roll {
+    vertical-align: text-bottom;
+}
+
+
+code {
+    color: red;
+}
+
+.reveal pre code { 
+     height: 80px;
+}
+</style>
+
+<h2>Melbourne House Prices Map App</h2>
+
+<p>An Interactive Shiny Application to help you to find home in Melbourne, Australia</p>
+
+<p><left>
+<small> author: Paolo Coraggio </small>
+</left></p>
+
+<p><small> date: 14.02.2020 </small></p>
 
   
 </section>
 <section class='class' data-state='' id='id'>
   <h2>The Melbourne House Prices Application</h2>
-  <ol class = "build incremental">
-<li>Interactive House Search Application </li>
-<li>Select your criteria (number of rooms, bathrooms, house type and Melbourne Region)</li>
-<li>View matches on the map and compare prices with same criteria in whole Melbourne</li>
-<li>Inizio a bestemmiare</li>
-</ol>
+  <p>The <strong>MHPMap application</strong> is an interactive application helping you to find a house in Melbourne, Australia </p>
+
+<p class='fragment'><strong>Select</strong> your criteria (e.g. number of Rooms, Bathrooms, 
+City district, Price Range) from the Drop Down and Slider menu</p>
+
+<p class='fragment'><strong>Visualise</strong> whithin an interactive map where the matching houses are located </p>
+
+<p class='fragment'><strong>Compare</strong> the mean prices of your criteria with the rest of the city</p>
+
+<p class='fragment'>MHPMap is a <a href="https://shiny.rstudio.com/">shiny</a> based application. You can find its full code on <a href="https://github.com/pacoraggio/MelbourneHousePriceShinyApp">GitHub</a> </p>
 
   
 </section>
 <section class='class' data-state='' id='id'>
-  <h2>What are the criteria</h2>
-  <blockquote>
-<p>A. My criteria are always the same
-B. E se smettessi di ascoltare questa musica cosi&#39; coinvolgente e triste forse scriverei meglio.
-C. Inizierei, come per incanto, a incasellare perfettamente le parole in onde sincopate che fanno da sottofondo perfetto
-D. Per immaginifici significati. L&#39;essenza dell&#39;uomo al di la dell&#39;esistenza. Nell&#39;ora e nel futuro. La descrizione banale della noia resa esaltante dal potere delle parole. L&#39;astuzia infinita, l&#39;estro, il genio che ci converte in creatori di spazi, di storie, mondi e universi nei quali rifugiarsi dal nostro piattume esistenziale. </p>
-</blockquote>
+  <h2>Parameter Selection</h2>
+  <ul>
+<li>The house data are available on <a href="https://www.kaggle.com/anthonypino/melbourne-housing-market#Melbourne_housing_FULL.csv">Kaggle</a> and consist of more than 30k records containing information about house location, number of rooms, price, distance from the Melbourne business center and so on.</li>
+<li>From the User Interface you can select the following parameters:
+
+<ul>
+<li>Number of Rooms</li>
+<li>Number of Bathrooms</li>
+<li>Type of Residency (house, unit/duplex/, town house)</li>
+<li>In which Melbourne region you want to search</li>
+<li>The price range</li>
+</ul></li>
+<li>This parameters are used to filter the data.frame created from the .csv file and the resulting data are displayed on the Melbourne Map</li>
+</ul>
 
   
 </section>
 <section class='class' data-state='' id='id'>
-  <h2>Problemi con googleVis</h2>
-  <ol>
-<li>AAAAAAAAAAAAAAAAAARHHHHHHHHHHHHH</li>
-</ol>
+  <h2>Map Visualization</h2>
+  <p>This is a map visualization for <code>houses</code> type with <code>3</code> rooms, <code>2</code> bathrooms, in Melbourne <code>Southern Metropolitan</code> area  </p>
 
-  
-</section>
-<section class='class' data-state='' id='id'>
-  <h2>The Map</h2>
-  <!-- <iframe src="demoemap.html" style="position:absolute;height:90%;width:90%"></iframe> -->
+<pre><code class="r">library(plotly)
+load(&quot;dfmelPres.Rdata&quot;)
 
-<style>
-  .p_iframe iframe {
-    width:90%;
-    height:576px;
-}
-</style>
+m = list(
+  l = 5,
+  r = 5,
+  b = 5,
+  t = 5,
+  pad = 1
+)
 
-<div class="p_iframe">
-<iframe frameborder="0" seamless='seamless' scrolling=no src="demoemap.html"></iframe>
-</div>
+
+l &lt;- list(
+  font = list(
+    size = 8,
+    color = &quot;#000&quot;),
+
+  bgcolor = &quot;#E2E2E2&quot;,
+  bordercolor = &quot;#FFFFFF&quot;,
+  orientation = &#39;v&#39;,
+  borderwidth = 0)
+
+
+p &lt;- plot_ly(df.melPres, type = &quot;scattermapbox&quot;) %&gt;%
+    add_trace(lat = filter(df.melPres, PriceCategory == &quot;low&quot;)$Lattitude,
+              lon = filter(df.melPres, PriceCategory == &quot;low&quot;)$Longtitude,
+              color = paste(&quot;&lt;b&gt;Low Price&lt;/b&gt;&quot;,&quot;&lt;br&gt; &lt; 660k&quot;),
+              # color = &quot;Low Price&quot;,
+              marker = list(color = &quot;darkgreen&quot;),
+              hoverinfo = &quot;text&quot;,
+              hovertext = filter(df.melPres, PriceCategory == &quot;low&quot;)$HoverText,
+              mode = &quot;markers&quot;) %&gt;%
+    add_trace(lat = filter(df.melPres, PriceCategory == &quot;medium low&quot;)$Lattitude,
+              lon = filter(df.melPres, PriceCategory == &quot;medium low&quot;)$Longtitude,
+              color = paste(&quot;&lt;b&gt;Medium Low Price&lt;/b&gt;&quot;, &quot;&lt;br&gt; 660k - 910k&quot;),
+              # color = &quot;Low Price&quot;,
+              marker = list(color = &quot;green&quot;),
+              hoverinfo = &quot;text&quot;,
+              hovertext = filter(df.melPres, PriceCategory == &quot;medium low&quot;)$HoverText,
+              mode = &quot;markers&quot;) %&gt;%
+    add_trace(lat = filter(df.melPres, PriceCategory == &quot;medium high&quot;)$Lattitude,
+              lon = filter(df.melPres, PriceCategory == &quot;medium high&quot;)$Longtitude,
+              color = paste(&quot;&lt;b&gt;Medium High Price&lt;/b&gt;&quot;,&quot;&lt;br&gt; 910K - 1.33M&quot;),
+              #color = &quot;Low Price&quot;,
+              marker = list(color = &quot;orange&quot;),
+              hovertext = filter(df.melPres, PriceCategory == &quot;medium high&quot;)$HoverText,
+              hoverinfo = &quot;text&quot;,
+              mode = &quot;markers&quot;)%&gt;%
+    add_trace(lat = filter(df.melPres, PriceCategory == &quot;high&quot;)$Lattitude,
+              lon = filter(df.melPres, PriceCategory == &quot;high&quot;)$Longtitude,
+              color = paste(&quot;&lt;b&gt;High Price&lt;/b&gt;&quot;,&quot;&lt;br&gt; &gt; 1.33M&quot;),
+              #color = &quot;Low Price&quot;,
+              marker = list(color = &quot;red&quot;),
+              hovertext = filter(df.melPres, PriceCategory == &quot;high&quot;)$HoverText,
+              hoverinfo = &quot;text&quot;,
+              mode = &quot;markers&quot;)%&gt;%
+    layout(
+      margin = m,
+        legend = l,
+        mapbox = list(
+            style = &#39;open-street-map&#39;,
+            zoom =9.5,
+            center = list(lon = mean(df.melPres$Longtitude), 
+                          lat = mean(df.melPres$Lattitude)))
+    )
+
+# htmlwidgets::saveWidget(as_widget(p), file = &quot;demoemap.html&quot;)
+htmlwidgets::saveWidget(p, file = &quot;demoemap1.html&quot;)
+cat(&#39;&lt;pre&gt;&lt;iframe src=&quot;demoemap1.html&quot; width=100% height=350px allowtransparency=&quot;true&quot;&gt; &lt;/iframe&gt;&lt;/pre&gt;&#39;)
+</code></pre>
+
+<pre><iframe src="demoemap1.html" width=100% height=350px allowtransparency="true"> </iframe></pre>
 
   
 </section>
@@ -90,8 +209,8 @@ D. Per immaginifici significati. L&#39;essenza dell&#39;uomo al di la dell&#39;e
     progress: true,
     history: true,
     center: true,
-    theme: Reveal.getQueryHash().theme || 'default', 
-    transition: Reveal.getQueryHash().transition || 'default', 
+    theme: Reveal.getQueryHash().theme || 'night', 
+    transition: Reveal.getQueryHash().transition || 'page', 
     dependencies: [
     // Cross-browser shim that fully implements classList -
     // https://github.com/eligrey/classList.js/
