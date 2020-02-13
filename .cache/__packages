@@ -4,3 +4,5 @@ ggplot2
 plotly
 dplyr
 slidify
+htmlTable
+htmltools

@@ -5,7 +5,7 @@ author      : Paolo Coraggio
 job         : 
 framework   : revealjs      # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
-hitheme     : tomorrow      # 
+hitheme     : zenburn      # 
 revealjs    :
   theme: night
   transition: page
@@ -59,6 +59,14 @@ code {
 .reveal pre code { 
      height: 80px;
 }
+
+Reveal.initialize({
+	// More info https://github.com/hakimel/reveal.js#dependencies
+	dependencies: [
+		{ src: 'plugin/highlight/highlight.js', async: true },
+	]
+})
+
 </style>
 
 ## Melbourne House Prices Map App
@@ -99,11 +107,13 @@ City district, Price Range) from the Drop Down and Slider menu
   - The price range
 - This parameters are used to filter the data.frame created from the .csv file and the resulting data are displayed on the Melbourne Map
 
---- .class #id 
+---
 
 ## Map Visualization 
 
 This is a map visualization for `houses` type with `3` rooms, `2` bathrooms, in Melbourne `Southern Metropolitan` area  
+
+Map Visualization
 
 
 ```r
@@ -127,14 +137,13 @@ l <- list(
   bgcolor = "#E2E2E2",
   bordercolor = "#FFFFFF",
   orientation = 'v',
-  borderwidth = 0)
+  borderwidth = 10)
 
 
 p <- plot_ly(df.melPres, type = "scattermapbox") %>%
     add_trace(lat = filter(df.melPres, PriceCategory == "low")$Lattitude,
               lon = filter(df.melPres, PriceCategory == "low")$Longtitude,
               color = paste("<b>Low Price</b>","<br> < 660k"),
-              # color = "Low Price",
               marker = list(color = "darkgreen"),
               hoverinfo = "text",
               hovertext = filter(df.melPres, PriceCategory == "low")$HoverText,
@@ -142,7 +151,6 @@ p <- plot_ly(df.melPres, type = "scattermapbox") %>%
     add_trace(lat = filter(df.melPres, PriceCategory == "medium low")$Lattitude,
               lon = filter(df.melPres, PriceCategory == "medium low")$Longtitude,
               color = paste("<b>Medium Low Price</b>", "<br> 660k - 910k"),
-              # color = "Low Price",
               marker = list(color = "green"),
               hoverinfo = "text",
               hovertext = filter(df.melPres, PriceCategory == "medium low")$HoverText,
@@ -150,7 +158,6 @@ p <- plot_ly(df.melPres, type = "scattermapbox") %>%
     add_trace(lat = filter(df.melPres, PriceCategory == "medium high")$Lattitude,
               lon = filter(df.melPres, PriceCategory == "medium high")$Longtitude,
               color = paste("<b>Medium High Price</b>","<br> 910K - 1.33M"),
-              #color = "Low Price",
               marker = list(color = "orange"),
               hovertext = filter(df.melPres, PriceCategory == "medium high")$HoverText,
               hoverinfo = "text",
@@ -158,7 +165,6 @@ p <- plot_ly(df.melPres, type = "scattermapbox") %>%
     add_trace(lat = filter(df.melPres, PriceCategory == "high")$Lattitude,
               lon = filter(df.melPres, PriceCategory == "high")$Longtitude,
               color = paste("<b>High Price</b>","<br> > 1.33M"),
-              #color = "Low Price",
               marker = list(color = "red"),
               hovertext = filter(df.melPres, PriceCategory == "high")$HoverText,
               hoverinfo = "text",
@@ -173,16 +179,101 @@ p <- plot_ly(df.melPres, type = "scattermapbox") %>%
                           lat = mean(df.melPres$Lattitude)))
     )
 
-# htmlwidgets::saveWidget(as_widget(p), file = "demoemap.html")
 htmlwidgets::saveWidget(p, file = "demoemap1.html")
-cat('<pre><iframe src="demoemap1.html" width=100% height=350px allowtransparency="true"> </iframe></pre>')
+cat('<pre><iframe src="demoemap1.html" width=100% height=400px allowtransparency="true"> </iframe></pre>')
 ```
 
-<pre><iframe src="demoemap1.html" width=100% height=350px allowtransparency="true"> </iframe></pre>
+<pre><iframe src="demoemap1.html" width=100% height=400px allowtransparency="true"> </iframe></pre>
 
---- .class #id
+---
 
-## Domanda
+## Price Comparison
 
-Ma sto aggiornando o no?
+In the App a textual summary and a interactive boxplot (using `plotly`) is shown to the user that can easily compare the average price for the selecting paramenters with similar configuration in all Melbourne
 
+
+```r
+# Summary Section
+
+# Preparing Data
+
+load("dfmel.Rdata")
+
+y <- list(
+    title = "Residency Price"
+)
+
+## Sample Parameters for Presentation purposes
+## in the shiny app they are input variables from UI
+
+rrooms <- 3
+bbathrooms <- 2
+ttype <- "h"
+region <- "Southern Metropolitan"
+
+## slicing for the parameters in All region.
+df.mel1 <- df.mel[which(df.mel$Rooms %in% rrooms &
+                            df.mel$Bathroom %in% bbathrooms &
+                            df.mel$Type %in% ttype),]
+
+## slicing for the parameters in Sample region.
+df.melPres <- df.mel[which(df.mel$Rooms %in% rrooms &
+                               df.mel$Bathroom %in% bbathrooms &
+                               df.mel$Type %in% ttype &
+                               df.mel$Regionname %in% region),]
+### Preparing Table
+
+a1 <- paste('<b>Summary</b><br>', as.character(unique(df.melPres$Regionname)))
+a2 <- '<b>Summary</b><br>All regions'
+
+row.values <- c("Matches","Mean Price ($)", "Standard Dev ($)")
+
+region.stat <- c(round(nrow(df.melPres),0), 
+                 round(mean(df.melPres$Price),0), 
+                 round(sd(df.melPres$Price),0))
+
+all.stat <- c(round(nrow(df.mel1),0), 
+             round(mean(df.mel1$Price),0), 
+             round(sd(df.mel1$Price),0))
+
+## Plotly Table
+
+t <- plot_ly(
+    type = 'table',
+    header = list(
+        values = c('', a1,a2),
+        line = list(color = '#506784'),
+        fill = list(color = '#119DFF'),
+        align = c('left','center'),
+        font = list(color = 'white', size = 8)
+    ),
+    cells = list(
+        values = rbind(
+            row.values,
+            region.stat,
+            all.stat),
+        line = list(color = '#506784'),
+        fill = list(color = c('#25FEFD', 'white')),
+        align = c('left', 'center'),
+        font = list(color = c('#506784'), size = 8)
+    ))
+
+## Plotly boxplot
+
+p <- plot_ly(y = ~df.melPres$Price, 
+             type = "box",
+             name = "Southern Metropolitan") %>%
+    add_trace(y = ~df.mel1$Price,
+              name = "All region") %>%
+    layout(yaxis = y, title = "Summary and Price Comparison")
+
+## Merging graphs
+tp <- subplot(t, p, nrows = 2, 
+              titleX = T,
+              shareY = FALSE, shareX = FALSE)
+
+htmlwidgets::saveWidget(tp, file = "summary.html")
+cat('<pre><iframe src="summary.html" width=100% height=400px allowtransparency="true"> </iframe></pre>')
+```
+
+<pre><iframe src="summary.html" width=100% height=400px allowtransparency="true"> </iframe></pre>

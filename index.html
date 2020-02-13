@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="stylesheet" href="libraries/frameworks/revealjs/css/reveal.min.css">
   <link rel="stylesheet" href="libraries/frameworks/revealjs/css/theme/night.css" id="theme">
-  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" id="theme">
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/zenburn.css" id="theme">
   <!--[if lt IE 9]>
   <script src="lib/js/html5shiv.js"></script>
   <![endif]-->  <link rel="stylesheet" href = "assets/css/ribbons.css">
@@ -64,6 +64,14 @@ code {
 .reveal pre code { 
      height: 80px;
 }
+
+Reveal.initialize({
+    // More info https://github.com/hakimel/reveal.js#dependencies
+    dependencies: [
+        { src: 'plugin/highlight/highlight.js', async: true },
+    ]
+})
+
 </style>
 
 <h2>Melbourne House Prices Map App</h2>
@@ -111,9 +119,11 @@ City district, Price Range) from the Drop Down and Slider menu</p>
 
   
 </section>
-<section class='class' data-state='' id='id'>
+<section class='' data-state='' id='slide-4'>
   <h2>Map Visualization</h2>
   <p>This is a map visualization for <code>houses</code> type with <code>3</code> rooms, <code>2</code> bathrooms, in Melbourne <code>Southern Metropolitan</code> area  </p>
+
+<p>Map Visualization</p>
 
 <pre><code class="r">library(plotly)
 load(&quot;dfmelPres.Rdata&quot;)
@@ -135,14 +145,13 @@ l &lt;- list(
   bgcolor = &quot;#E2E2E2&quot;,
   bordercolor = &quot;#FFFFFF&quot;,
   orientation = &#39;v&#39;,
-  borderwidth = 0)
+  borderwidth = 10)
 
 
 p &lt;- plot_ly(df.melPres, type = &quot;scattermapbox&quot;) %&gt;%
     add_trace(lat = filter(df.melPres, PriceCategory == &quot;low&quot;)$Lattitude,
               lon = filter(df.melPres, PriceCategory == &quot;low&quot;)$Longtitude,
               color = paste(&quot;&lt;b&gt;Low Price&lt;/b&gt;&quot;,&quot;&lt;br&gt; &lt; 660k&quot;),
-              # color = &quot;Low Price&quot;,
               marker = list(color = &quot;darkgreen&quot;),
               hoverinfo = &quot;text&quot;,
               hovertext = filter(df.melPres, PriceCategory == &quot;low&quot;)$HoverText,
@@ -150,7 +159,6 @@ p &lt;- plot_ly(df.melPres, type = &quot;scattermapbox&quot;) %&gt;%
     add_trace(lat = filter(df.melPres, PriceCategory == &quot;medium low&quot;)$Lattitude,
               lon = filter(df.melPres, PriceCategory == &quot;medium low&quot;)$Longtitude,
               color = paste(&quot;&lt;b&gt;Medium Low Price&lt;/b&gt;&quot;, &quot;&lt;br&gt; 660k - 910k&quot;),
-              # color = &quot;Low Price&quot;,
               marker = list(color = &quot;green&quot;),
               hoverinfo = &quot;text&quot;,
               hovertext = filter(df.melPres, PriceCategory == &quot;medium low&quot;)$HoverText,
@@ -158,7 +166,6 @@ p &lt;- plot_ly(df.melPres, type = &quot;scattermapbox&quot;) %&gt;%
     add_trace(lat = filter(df.melPres, PriceCategory == &quot;medium high&quot;)$Lattitude,
               lon = filter(df.melPres, PriceCategory == &quot;medium high&quot;)$Longtitude,
               color = paste(&quot;&lt;b&gt;Medium High Price&lt;/b&gt;&quot;,&quot;&lt;br&gt; 910K - 1.33M&quot;),
-              #color = &quot;Low Price&quot;,
               marker = list(color = &quot;orange&quot;),
               hovertext = filter(df.melPres, PriceCategory == &quot;medium high&quot;)$HoverText,
               hoverinfo = &quot;text&quot;,
@@ -166,7 +173,6 @@ p &lt;- plot_ly(df.melPres, type = &quot;scattermapbox&quot;) %&gt;%
     add_trace(lat = filter(df.melPres, PriceCategory == &quot;high&quot;)$Lattitude,
               lon = filter(df.melPres, PriceCategory == &quot;high&quot;)$Longtitude,
               color = paste(&quot;&lt;b&gt;High Price&lt;/b&gt;&quot;,&quot;&lt;br&gt; &gt; 1.33M&quot;),
-              #color = &quot;Low Price&quot;,
               marker = list(color = &quot;red&quot;),
               hovertext = filter(df.melPres, PriceCategory == &quot;high&quot;)$HoverText,
               hoverinfo = &quot;text&quot;,
@@ -181,18 +187,102 @@ p &lt;- plot_ly(df.melPres, type = &quot;scattermapbox&quot;) %&gt;%
                           lat = mean(df.melPres$Lattitude)))
     )
 
-# htmlwidgets::saveWidget(as_widget(p), file = &quot;demoemap.html&quot;)
 htmlwidgets::saveWidget(p, file = &quot;demoemap1.html&quot;)
-cat(&#39;&lt;pre&gt;&lt;iframe src=&quot;demoemap1.html&quot; width=100% height=350px allowtransparency=&quot;true&quot;&gt; &lt;/iframe&gt;&lt;/pre&gt;&#39;)
+cat(&#39;&lt;pre&gt;&lt;iframe src=&quot;demoemap1.html&quot; width=100% height=400px allowtransparency=&quot;true&quot;&gt; &lt;/iframe&gt;&lt;/pre&gt;&#39;)
 </code></pre>
 
-<pre><iframe src="demoemap1.html" width=100% height=350px allowtransparency="true"> </iframe></pre>
+<pre><iframe src="demoemap1.html" width=100% height=400px allowtransparency="true"> </iframe></pre>
 
   
 </section>
-<section class='class' data-state='' id='id'>
-  <h2>Domanda</h2>
-  <p>Ma sto aggiornando o no?</p>
+<section class='' data-state='' id='slide-5'>
+  <h2>Price Comparison</h2>
+  <p>In the App a textual summary and a interactive boxplot (using <code>plotly</code>) is shown to the user that can easily compare the average price for the selecting paramenters with similar configuration in all Melbourne</p>
+
+<pre><code class="r"># Summary Section
+
+# Preparing Data
+
+load(&quot;dfmel.Rdata&quot;)
+
+y &lt;- list(
+    title = &quot;Residency Price&quot;
+)
+
+## Sample Parameters for Presentation purposes
+## in the shiny app they are input variables from UI
+
+rrooms &lt;- 3
+bbathrooms &lt;- 2
+ttype &lt;- &quot;h&quot;
+region &lt;- &quot;Southern Metropolitan&quot;
+
+## slicing for the parameters in All region.
+df.mel1 &lt;- df.mel[which(df.mel$Rooms %in% rrooms &amp;
+                            df.mel$Bathroom %in% bbathrooms &amp;
+                            df.mel$Type %in% ttype),]
+
+## slicing for the parameters in Sample region.
+df.melPres &lt;- df.mel[which(df.mel$Rooms %in% rrooms &amp;
+                               df.mel$Bathroom %in% bbathrooms &amp;
+                               df.mel$Type %in% ttype &amp;
+                               df.mel$Regionname %in% region),]
+### Preparing Table
+
+a1 &lt;- paste(&#39;&lt;b&gt;Summary&lt;/b&gt;&lt;br&gt;&#39;, as.character(unique(df.melPres$Regionname)))
+a2 &lt;- &#39;&lt;b&gt;Summary&lt;/b&gt;&lt;br&gt;All regions&#39;
+
+row.values &lt;- c(&quot;Matches&quot;,&quot;Mean Price ($)&quot;, &quot;Standard Dev ($)&quot;)
+
+region.stat &lt;- c(round(nrow(df.melPres),0), 
+                 round(mean(df.melPres$Price),0), 
+                 round(sd(df.melPres$Price),0))
+
+all.stat &lt;- c(round(nrow(df.mel1),0), 
+             round(mean(df.mel1$Price),0), 
+             round(sd(df.mel1$Price),0))
+
+## Plotly Table
+
+t &lt;- plot_ly(
+    type = &#39;table&#39;,
+    header = list(
+        values = c(&#39;&#39;, a1,a2),
+        line = list(color = &#39;#506784&#39;),
+        fill = list(color = &#39;#119DFF&#39;),
+        align = c(&#39;left&#39;,&#39;center&#39;),
+        font = list(color = &#39;white&#39;, size = 8)
+    ),
+    cells = list(
+        values = rbind(
+            row.values,
+            region.stat,
+            all.stat),
+        line = list(color = &#39;#506784&#39;),
+        fill = list(color = c(&#39;#25FEFD&#39;, &#39;white&#39;)),
+        align = c(&#39;left&#39;, &#39;center&#39;),
+        font = list(color = c(&#39;#506784&#39;), size = 8)
+    ))
+
+## Plotly boxplot
+
+p &lt;- plot_ly(y = ~df.melPres$Price, 
+             type = &quot;box&quot;,
+             name = &quot;Southern Metropolitan&quot;) %&gt;%
+    add_trace(y = ~df.mel1$Price,
+              name = &quot;All region&quot;) %&gt;%
+    layout(yaxis = y, title = &quot;Summary and Price Comparison&quot;)
+
+## Merging graphs
+tp &lt;- subplot(t, p, nrows = 2, 
+              titleX = T,
+              shareY = FALSE, shareX = FALSE)
+
+htmlwidgets::saveWidget(tp, file = &quot;summary.html&quot;)
+cat(&#39;&lt;pre&gt;&lt;iframe src=&quot;summary.html&quot; width=100% height=400px allowtransparency=&quot;true&quot;&gt; &lt;/iframe&gt;&lt;/pre&gt;&#39;)
+</code></pre>
+
+<pre><iframe src="summary.html" width=100% height=400px allowtransparency="true"> </iframe></pre>
 
   
 </section>
