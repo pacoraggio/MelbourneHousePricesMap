@@ -83,7 +83,7 @@ An Interactive Shiny Application to help you to find home in Melbourne, Australi
 
 ## The Melbourne House Prices Application
 
-The __MHPMap App__ is an interactive application helping you to find a house in Melbourne, Australia; 
+The [__MHPMap App__](https://pacoraggio.shinyapps.io/melbournehousepriceshinyapp/) is an interactive application helping you to find a house in Melbourne, Australia; 
 
 .fragment __Select__ your criteria (number of bedrooms and bathrooms, the city district and the desired rice Range) from the Drop Down and Slider menu;
 
@@ -274,5 +274,3 @@ cat('<pre><iframe src="summary.html" width=100% height=400px allowtransparency="
 ```
 
 <pre><iframe src="summary.html" width=100% height=400px allowtransparency="true"> </iframe></pre>
-
-.fragment The End
