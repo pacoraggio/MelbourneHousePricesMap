@@ -83,37 +83,34 @@ An Interactive Shiny Application to help you to find home in Melbourne, Australi
 
 ## The Melbourne House Prices Application
 
-The __MHPMap application__ is an interactive application helping you to find a house in Melbourne, Australia 
+The __MHPMap App__ is an interactive application helping you to find a house in Melbourne, Australia; 
 
-.fragment __Select__ your criteria (e.g. number of Rooms, Bathrooms, 
-City district, Price Range) from the Drop Down and Slider menu
+.fragment __Select__ your criteria (number of bedrooms and bathrooms, the city district and the desired rice Range) from the Drop Down and Slider menu;
 
-.fragment __Visualise__ whithin an interactive map where the matching houses are located 
+.fragment __Visualise__, whithin an interactive map, where the matching houses are located;
 
-.fragment __Compare__ the mean prices of your criteria with the rest of the city
+.fragment __Compare__ the mean prices of your criteria with the rest of the city;
 
-.fragment MHPMap is a [shiny](https://shiny.rstudio.com/) based application. You can find its full code on [GitHub](https://github.com/pacoraggio/MelbourneHousePriceShinyApp) 
+.fragment MHPMap has been developed using [shiny](https://shiny.rstudio.com/). You can find its full code on [GitHub](https://github.com/pacoraggio/MelbourneHousePriceShinyApp) 
 
 --- .class #id 
 
 ## Parameter Selection
 
-- The house data are available on [Kaggle](https://www.kaggle.com/anthonypino/melbourne-housing-market#Melbourne_housing_FULL.csv) and consist of more than 30k records containing information about house location, number of rooms, price, distance from the Melbourne business center and so on.
+- The house data are available on [Kaggle](https://www.kaggle.com/anthonypino/melbourne-housing-market#Melbourne_housing_FULL.csv) and consist of more than 30k records containing information, among othersm about house location, number of rooms, price, distance from the Melbourne business center.
 - From the User Interface you can select the following parameters:
-  - Number of Rooms
-  - Number of Bathrooms
-  - Type of Residency (house, unit/duplex/, town house)
-  - In which Melbourne region you want to search
-  - The price range
+  - Number of Rooms (drop down menu)
+  - Number of Bathrooms (drop down menu)
+  - Type of Residency (house, unit/duplex/, town house) (drop down menu)
+  - In which Melbourne region you want to search (drop down menu)
+  - The price range (slider)
 - This parameters are used to filter the data.frame created from the .csv file and the resulting data are displayed on the Melbourne Map
 
 ---
 
-## Map Visualization 
+## Map Visualization - with code example
 
-This is a map visualization for `houses` type with `3` rooms, `2` bathrooms, in Melbourne `Southern Metropolitan` area  
-
-Map Visualization
+This is a map visualization for `houses` type with `3` rooms, `2` bathrooms, in Melbourne `Southern Metropolitan` area. All graphs and plots are based on `plotly`.  
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, results='asis'}
 
@@ -185,7 +182,7 @@ cat('<pre><iframe src="demoemap1.html" width=100% height=400px allowtransparency
 
 ---
 
-## Price Comparison
+## Price Comparison - with code example
 
 In the App a textual summary and a interactive boxplot (using `plotly`) is shown to the user that can easily compare the average price for the selecting paramenters with similar configuration in all Melbourne
 

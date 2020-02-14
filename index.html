@@ -88,31 +88,30 @@ Reveal.initialize({
 </section>
 <section class='class' data-state='' id='id'>
   <h2>The Melbourne House Prices Application</h2>
-  <p>The <strong>MHPMap application</strong> is an interactive application helping you to find a house in Melbourne, Australia </p>
+  <p>The <strong>MHPMap App</strong> is an interactive application helping you to find a house in Melbourne, Australia; </p>
 
-<p class='fragment'><strong>Select</strong> your criteria (e.g. number of Rooms, Bathrooms, 
-City district, Price Range) from the Drop Down and Slider menu</p>
+<p class='fragment'><strong>Select</strong> your criteria (number of bedrooms and bathrooms, the city district and the desired rice Range) from the Drop Down and Slider menu;</p>
 
-<p class='fragment'><strong>Visualise</strong> whithin an interactive map where the matching houses are located </p>
+<p class='fragment'><strong>Visualise</strong>, whithin an interactive map, where the matching houses are located;</p>
 
-<p class='fragment'><strong>Compare</strong> the mean prices of your criteria with the rest of the city</p>
+<p class='fragment'><strong>Compare</strong> the mean prices of your criteria with the rest of the city;</p>
 
-<p class='fragment'>MHPMap is a <a href="https://shiny.rstudio.com/">shiny</a> based application. You can find its full code on <a href="https://github.com/pacoraggio/MelbourneHousePriceShinyApp">GitHub</a> </p>
+<p class='fragment'>MHPMap has been developed using <a href="https://shiny.rstudio.com/">shiny</a>. You can find its full code on <a href="https://github.com/pacoraggio/MelbourneHousePriceShinyApp">GitHub</a> </p>
 
   
 </section>
 <section class='class' data-state='' id='id'>
   <h2>Parameter Selection</h2>
   <ul>
-<li>The house data are available on <a href="https://www.kaggle.com/anthonypino/melbourne-housing-market#Melbourne_housing_FULL.csv">Kaggle</a> and consist of more than 30k records containing information about house location, number of rooms, price, distance from the Melbourne business center and so on.</li>
+<li>The house data are available on <a href="https://www.kaggle.com/anthonypino/melbourne-housing-market#Melbourne_housing_FULL.csv">Kaggle</a> and consist of more than 30k records containing information, among othersm about house location, number of rooms, price, distance from the Melbourne business center.</li>
 <li>From the User Interface you can select the following parameters:
 
 <ul>
-<li>Number of Rooms</li>
-<li>Number of Bathrooms</li>
-<li>Type of Residency (house, unit/duplex/, town house)</li>
-<li>In which Melbourne region you want to search</li>
-<li>The price range</li>
+<li>Number of Rooms (drop down menu)</li>
+<li>Number of Bathrooms (drop down menu)</li>
+<li>Type of Residency (house, unit/duplex/, town house) (drop down menu)</li>
+<li>In which Melbourne region you want to search (drop down menu)</li>
+<li>The price range (slider)</li>
 </ul></li>
 <li>This parameters are used to filter the data.frame created from the .csv file and the resulting data are displayed on the Melbourne Map</li>
 </ul>
@@ -120,10 +119,8 @@ City district, Price Range) from the Drop Down and Slider menu</p>
   
 </section>
 <section class='' data-state='' id='slide-4'>
-  <h2>Map Visualization</h2>
-  <p>This is a map visualization for <code>houses</code> type with <code>3</code> rooms, <code>2</code> bathrooms, in Melbourne <code>Southern Metropolitan</code> area  </p>
-
-<p>Map Visualization</p>
+  <h2>Map Visualization - with code example</h2>
+  <p>This is a map visualization for <code>houses</code> type with <code>3</code> rooms, <code>2</code> bathrooms, in Melbourne <code>Southern Metropolitan</code> area. All graphs and plots are based on <code>plotly</code>.  </p>
 
 <pre><code class="r">library(plotly)
 load(&quot;dfmelPres.Rdata&quot;)
@@ -196,7 +193,7 @@ cat(&#39;&lt;pre&gt;&lt;iframe src=&quot;demoemap1.html&quot; width=100% height=
   
 </section>
 <section class='' data-state='' id='slide-5'>
-  <h2>Price Comparison</h2>
+  <h2>Price Comparison - with code example</h2>
   <p>In the App a textual summary and a interactive boxplot (using <code>plotly</code>) is shown to the user that can easily compare the average price for the selecting paramenters with similar configuration in all Melbourne</p>
 
 <pre><code class="r"># Summary Section
@@ -283,6 +280,8 @@ cat(&#39;&lt;pre&gt;&lt;iframe src=&quot;summary.html&quot; width=100% height=40
 </code></pre>
 
 <pre><iframe src="summary.html" width=100% height=400px allowtransparency="true"> </iframe></pre>
+
+<p class='fragment'>The End</p>
 
   
 </section>
